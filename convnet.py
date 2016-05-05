@@ -172,7 +172,7 @@ class ConvNet(IGPUModel):
         self.print_costs(self.test_outputs[-1], do_exit_on_nan = False)
         print ""
         print "-------------------------------------------------------",
-        self.print_layer_weights(print_entire_array)
+        #self.print_layer_weights(print_entire_array)
 
     def print_layer_weights(self, print_entire_array = False):
         for i,l in enumerate(self.layers): # This is kind of hacky but will do for now.
@@ -317,8 +317,8 @@ class ConvNet(IGPUModel):
 
         op.delete_option('max_test_err')
         op.options["max_filesize_mb"].default = 0
-        op.options["testing_freq"].default = 50
-        op.options["num_epochs"].default = 50000
+        op.options["testing_freq"].default = 10
+        op.options["num_epochs"].default = 1000
         op.options['dp_type'].default = None
         
         DataProvider.register_data_provider('cifar', 'CIFAR', CIFARDataProvider)

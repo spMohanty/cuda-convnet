@@ -30,7 +30,8 @@ from util import *
 import mmap
 
 BATCH_META_FILE = "batches.meta"
-IMAGE_SIZE=32
+IMAGE_SIZE=256
+#IMAGE_SIZE=32
 
 class DataProvider:
     BATCH_REGEX = re.compile('^data_batch_(\d+)(\.\d+)?$')

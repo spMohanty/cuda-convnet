@@ -820,26 +820,26 @@ class FCLayerParser(WeightLayerParser):
       num_output = dic['outputs']
       input_size = reduce(mul, input_shape)
       weights = dic['weights'][0]
-      print 'weights.shape=%s' % (str(weights.shape))
-      print 'weights=%s' % (str(weights))
+      #print 'weights.shape=%s' % (str(weights.shape))
+      #print 'weights=%s' % (str(weights))
       if weights.shape[0] != input_size or weights.shape[1] != num_output:
         raise LayerParsingError('Incorrect shapes: weights shape %s, input shape %s, num_output %d' % (weights.shape, input_shape, num_output))
       if len(input_shape) == 3:
-        print 'Converting'
+        #print 'Converting'
         channels = input_shape[2]
         height = input_shape[0]
         width = input_shape[1]
         weights = weights.reshape((channels, height, width, num_output))
         converted_weights = n.empty((height, width, channels, num_output), dtype=weights.dtype)
         for channel in range(channels):
-          print 'channel %d' % (channel)
+          #print 'channel %d' % (channel)
           converted_weights[:, :, channel, :] = weights[channel, :, :, :]
         converted_weights.resize(input_size, num_output)
       else:
         converted_weights = weights
 
-      print 'converted_weights.shape=%s' % (str(converted_weights.shape))
-      print 'converted_weights=%s' % (str(converted_weights))
+      #print 'converted_weights.shape=%s' % (str(converted_weights.shape))
+      #print 'converted_weights=%s' % (str(converted_weights))
 
       payload = bytearray()
       payload.extend(binary.to_string('class'))
@@ -1032,7 +1032,7 @@ class ConvLayerParser(LocalLayerParser):
       ksize = dic['filterSize'][0]
       stride = dic['stride'][0]
 
-      print "input_channels=%s, ksize=%s, total_num_kernels=%s" % (str(input_channels), str(ksize), str(total_num_kernels))
+      #print "input_channels=%s, ksize=%s, total_num_kernels=%s" % (str(input_channels), str(ksize), str(total_num_kernels))
 
       weights.resize((input_channels, ksize, ksize, total_num_kernels))
       converted_weights = n.empty((ksize, ksize, input_channels, total_num_kernels), dtype=weights.dtype)
@@ -1041,10 +1041,10 @@ class ConvLayerParser(LocalLayerParser):
       converted_weights.resize(ksize * ksize * input_channels, total_num_kernels)
       my_weights = converted_weights[:, channels_start:channels_end]
       my_biases = biases[channels_start:channels_end]
-      sys.stderr.write('converted_weights.shape=%s\n' % (str(converted_weights.shape)))
-      sys.stderr.write('my_weights.shape=%s\n' % (str(my_weights.shape)))
-      sys.stderr.write('my_biases.shape=%s\n' % (str(my_biases.shape)))
-      sys.stderr.write('biases.shape=%s\n' % (str(dic['biases'].shape)))
+      #sys.stderr.write('converted_weights.shape=%s\n' % (str(converted_weights.shape)))
+      #sys.stderr.write('my_weights.shape=%s\n' % (str(my_weights.shape)))
+      #sys.stderr.write('my_biases.shape=%s\n' % (str(my_biases.shape)))
+      #sys.stderr.write('biases.shape=%s\n' % (str(dic['biases'].shape)))
 
       payload = bytearray()
       payload.extend(binary.to_string('class'))

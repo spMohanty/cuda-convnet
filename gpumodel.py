@@ -91,8 +91,8 @@ class IGPUModel:
             
         self.import_model()
         self.init_model_lib()
-        if self.print_entire_array:
-            self.print_layer_weights(self.print_entire_array)
+        #if self.print_entire_array:
+        #    self.print_layer_weights(self.print_entire_array)
         
     def import_model(self):
         print "========================="
@@ -319,9 +319,9 @@ class IGPUModel:
         for layer_dict in self.layers:
             type = layer_dict['type']
             if type not in lay.layer_savers:
-              sys.stderr.write('save_as_binary(): Type not recognized: %s\n' % (type))
+              #sys.stderr.write('save_as_binary(): Type not recognized: %s\n' % (type))
               continue
-            sys.stderr.write('save_as_binary(): Type: %s\n' % (type))
+            #sys.stderr.write('save_as_binary(): Type: %s\n' % (type))
             layer_saver = lay.layer_savers[type]
             layer_payload = layer_saver(layer_dict)
             layers.extend(layer_payload)
