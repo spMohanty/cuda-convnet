@@ -17,8 +17,8 @@ SIZE = (image_size, image_size)
 IMAGES_PER_BATCH = 500
 channels = 3
 
-OUTPUT_PATH = "./cuda-convnet-batch-data-with-none"
-INPUT_DIR ="./dataset_with_none"
+OUTPUT_PATH = "/root/cuda_runtime/food_101/data/batches"
+INPUT_DIR ="/root/cuda_runtime/food_101/data/images"
 
 
 found_ids = {}
